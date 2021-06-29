@@ -8,6 +8,7 @@
     "smtp" : {
       "host": "mail.example.com",
       "port": 587,
+      "starttls": true,
       "username": "sender@example.com",
       "password": "!!!<<<CHANGEME>>>!!!"
     }
