@@ -23,7 +23,7 @@ function WelcomeMap() {
         }}
       />
       {/* <Map.View maxZoom={22} zoom={6} center={fromLonLat([10, 51])} /> */}
-      <Map.View maxZoom={22} zoom={13} center={fromLonLat([9.1798, 48.7759])} />
+      <Map.View maxZoom={22} zoom={13} center={fromLonLat([8.653950491088523,49.87128069498298])} />
     </Map>
   )
 }
