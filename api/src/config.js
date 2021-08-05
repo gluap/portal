@@ -16,8 +16,8 @@ const configSchema = Joi.object({
       from: Joi.string().required(),
       smtp: Joi.object({
         host: Joi.string().required(),
-        port: Joi.number().default(587),
-        starttls: Joi.boolean().default(true),
+        port: Joi.number().default(465),
+        starttls: Joi.boolean().default(false),
         username: Joi.string().required(),
         password: Joi.string().required(),
       }).required(),
