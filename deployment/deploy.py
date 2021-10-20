@@ -10,15 +10,18 @@ import uuid
 from pathlib import Path
 
 __confvalues__ = {
-    "hostname": ("portal.example.com", "the hostname of your instance", "portal\.example\.com"),
-    "MAIL_HOST": ("mail.example.com", "the mail server to be used by portal"),
-    "MAIL_PORT": ("465", "the port to be used on the mail server"),
-    "STARTTLS": ("false", "whether to use starttls or tls without starttls when talking to the mail server"),
-    "MAIL_USER": ("sender@example.com", "the username to be used by portal to send mails."),
-    "MAIL_PASSWORD": ("changeme", "the mail users password used to send mails."),
-    "PORTAL_CLIENT_ID": ("changeme"),
-    "UPLOAD_CLIENT_ID": ("changeme"),
+    "hostname": ["portal.example.com", "the hostname of your instance", "portal\.example\.com"],
+    "MAIL_HOST": ["mail.example.com", "the mail server to be used by portal"],
+    "MAIL_PORT": ["465", "the port to be used on the mail server"],
+    "MAIL_USER": ["sender@example.com", "the username to be used by portal to send mails."],
+    "MAIL_PASSWORD": ["changeme", "the mail users password used to send mails."],
+    "MAIL_SENDER": ["changeme", "the mail users sender address, e.g. e.g. @example.com."],
+    "PORTAL_CLIENT_ID": ["changeme"],
+    "UPLOAD_CLIENT_ID": ["changeme"],
+    "COOKIE_SECRET": ["changeme"],
+    "JWT_SECRET": ["changeme"],
 }
+
 
 
 def main(args):
@@ -66,21 +69,24 @@ def main(args):
 
 def store_settings(target, conf):
     n = datetime.datetime.now()
-    (target / f"settings_{n.strftime('%Y-%m-%d_%H-%M-%S')}.json").write_text(json.dumps(conf),"utf-8")
+    (target / f"settings_{n.strftime('%Y-%m-%d_%H-%M-%S')}.json").write_text(json.dumps(conf), "utf-8")
 
 
 def apply_settings(target, conf):
     for f in [target / "docker-compose.yaml", target / "config" / "api.json", target / "config" / "frontend.json"]:
         content = f.read_text("utf-8")
         for key, value in conf.items():
-            content = re.sub(f"!!!<<<CHANGEME_{key}>>>!!!", value, content)
+            if len(__confvalues__[key]) > 2:
+                content = re.sub(__confvalues__[key][2], value, content)
+            else:
+                content = re.sub(f"!!!<<<CHANGEME_{key}>>>!!!", value, content)
         f.write_text(content, "utf-8")
 
 
 def get_conf_values():
     result = {}
     for k, v in __confvalues__.items():
-        if not isinstance(v,tuple):
+        if len(v) < 2:
             result[k] = str(uuid.uuid4())
             continue
         print(f"Please enter {v[1]}, example value {v[0]}")

@@ -1,7 +1,7 @@
 {
   "cookieSecret": "!!!<<<CHANGEME_COOKIE_SECRET>>>!!!",
   "jwtSecret": "!!!<<<CHANGEME_JWT_SECRET>>>!!!",
-  "baseUrl": "https://api.example.com/",
+  "baseUrl": "https://portal.example.com/api",
   "mainFrontendUrl": "https://portal.example.com/",
   "mail": {
     "from": "!!!<<<CHANGEME_MAIL_SENDER>>>!!!",
