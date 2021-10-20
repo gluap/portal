@@ -1,16 +1,16 @@
 {
-  "cookieSecret": "!!!<<<CHANGEME>>>!!!",
-  "jwtSecret": "!!!<<<CHANGEME>>>!!!",
+  "cookieSecret": "!!!<<<CHANGEME_COOKIE_SECRET>>>!!!",
+  "jwtSecret": "!!!<<<CHANGEME_JWT_SECRET>>>!!!",
   "baseUrl": "https://api.example.com/",
   "mainFrontendUrl": "https://portal.example.com/",
   "mail": {
-    "from": "Sender Name <sender@example.com>",
+    "from": "!!!<<<CHANGEME_MAIL_SENDER>>>!!!",
     "smtp" : {
-      "host": "mail.example.com",
-      "port": 465,
+      "host": "!!!<<<CHANGEME_MAIL_HOST>>>!!!",
+      "port": "!!!<<<CHANGEME_MAIL_PORT>>>!!!",
       "starttls": false,
-      "username": "sender@example.com",
-      "password": "!!!<<<CHANGEME>>>!!!"
+      "username": "!!!<<<CHANGEME_MAIL_USER>>>!!!",
+      "password": "!!!<<<CHANGEME_MAIL_PASSWORD>>>!!!"
     }
   },
   "mongodb": {
@@ -20,14 +20,14 @@
   "redisUrl": "redis://redis",
   "oAuth2Clients": [
     {
-      "clientId": "!!!<<<CHANGEME>>>!!!",
+      "clientId": "!!!<<<CHANGEME_PORTAL_CLIENT_ID>>>!!!",
       "validRedirectUris": ["https://portal.example.com/redirect"],
       "refreshTokenExpirySeconds": 604800,
       "maxScope": "*",
       "title": "OBS Portal"
     },
     {
-      "clientId": "!!!<<<CHANGEME>>>!!!",
+      "clientId": "!!!<<<CHANGEME_UPLOAD_CLIENT_ID>>>!!!",
       "validRedirectUris": ["__LOCAL__"],
       "maxScope": "track.upload",
       "refreshTokenExpirySeconds": 86400000,
